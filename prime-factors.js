@@ -1,27 +1,31 @@
-
-
-function factors (input) {
+function factors(input) {
   const inputted = Number.parseInt(input);
   let factorsArr = [];
-  for(let i = 1; i <= inputted; ++i) {
+  for (let i = 2; i <= inputted; ++i) {
     inputted % i === 0 ? factorsArr.push(i) : null;
   }
   console.log(factorsArr);
   return factorsArr;
 }
 
-function prime_factors (factors) {
+function prime_factors(factors) {
   let prime_factors_arr = [];
-  const prime_check = [2, 3, 5, 7, 9];
   let bool_arr = [];
   for(let i of factors){
-    i === 1 ? bool_arr.push(false) :
-    bool_arr.push(prime_check.every(primeCheck => {
-      if(i > primeCheck) return i % primeCheck != 0;
-      else return true;
-    }));
+    if (isPrime(i)) prime_factors_arr.push(i);
   }
-  return bool_arr;
+  return prime_factors_arr;
+}
+
+function isPrime(num) {
+  const prime_check = [2, 3, 5, 7, 9];
+  if (num <= 1) return false;
+  for(let i of prime_check){
+    if (num % i === 0) return false;
+  }
+  return true;
 }
 
 console.log(prime_factors(factors(72)));
+
+console.log(isPrime(17), isPrime(6), isPrime(33), isPrime(31), isPrime(77), isPrime(83));
