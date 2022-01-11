@@ -19,4 +19,17 @@ function isValidBinary(binStr: string): boolean {
   }
 }
 
+function dec2bin(dec: number){
+  if(isNaN(dec)) throw new TypeError("Enter a valid number.");
+  const binArr: number[] = [];
+  let vrb = dec;
+  while(vrb >= 1){
+    binArr.push(Math.floor(vrb) % 2);
+    vrb = Math.floor(vrb / 2);
+  }
+  let binaryString = binArr.reverse().join("");
+  return binaryString;
+}
+
 console.log(bin2dec("101100111001100011110"), parseInt("101100111001100011110", 2));
+console.log(dec2bin(1471262));
